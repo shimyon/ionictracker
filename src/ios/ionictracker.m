@@ -6,12 +6,12 @@
   // Member variables go here.
 }
 
-- (void)add:(CDVInvokedUrlCommand*)command;
+- (void)coolMethod:(CDVInvokedUrlCommand*)command;
 @end
 
 @implementation ionictracker
 
-- (void)add:(CDVInvokedUrlCommand*)command
+- (void)coolMethod:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
     NSString* echo = [command.arguments objectAtIndex:0];

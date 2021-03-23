@@ -42,12 +42,4 @@
 
         commandDelegate.send(pluginResult, callbackId: command?.callbackId)
     }
-
-    @objc(getUserData:) func getUserData(_ command: CDVInvokedUrlCommand) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let userDataController = storyboard.instantiateViewController(withIdentifier: "controllerId") as! ViewController
-        userDataController.userDataDelegate = self
-        userDataController.cdvCommand = command
-        viewController.addChildController(userDataController)
-    }
 }

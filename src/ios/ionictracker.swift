@@ -42,4 +42,72 @@
 
         commandDelegate.send(pluginResult, callbackId: command?.callbackId)
     }
+
+    /* This methods accepts string messgae from ionic app
+     and returns a message */
+    @objc(getStatus:) func getStatus(_ command: CDVInvokedUrlCommand?) {
+        var pluginResult: CDVPluginResult? = nil
+        let locationManager = CLLocationManager()
+        let locStatus = CLLocationManager.authorizationStatus()
+        var locStatusString = "notDetermined"
+        switch locStatus {
+              case .notDetermined:
+                locStatusString = "notDetermined"
+                locationManager.requestWhenInUseAuthorization()
+                break
+              case .denied:
+                locStatusString = "denied"
+                break
+              case .restricted:
+                locStatusString = "restricted"
+                break
+              case .authorizedWhenInUse:
+                locStatusString = "authorizedWhenInUse"
+                break
+              case .authorizedAlways:
+                locStatusString = "authorizedAlways"
+              break
+        }
+        pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: locStatusString)
+        
+        commandDelegate.send(pluginResult, callbackId: command?.callbackId)
+    }
+
+    /* This methods accepts string messgae from ionic app
+     and returns a message */
+    @objc(requestToLocationService:) func requestToLocationService(_ command: CDVInvokedUrlCommand?) {
+        var pluginResult: CDVPluginResult? = nil
+        pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "OK")
+
+        commandDelegate.send(pluginResult, callbackId: command?.callbackId)
+    }
+
+    
+    /* This methods accepts string messgae from ionic app
+     and returns a message */
+    @objc(startTracking:) func startTracking(_ command: CDVInvokedUrlCommand?) {
+        var pluginResult: CDVPluginResult? = nil
+        let echo = command?.arguments[0] as? String
+        if let echoString = echo{
+            pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "\(echoString)!! from India")
+        } else {
+            pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
+        }
+
+        commandDelegate.send(pluginResult, callbackId: command?.callbackId)
+    }   
+
+    /* This methods accepts string messgae from ionic app
+     and returns a message */
+    @objc(stopTracking:) func stopTracking(_ command: CDVInvokedUrlCommand?) {
+        var pluginResult: CDVPluginResult? = nil
+        let echo = command?.arguments[0] as? String
+        if let echoString = echo{
+            pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "\(echoString)!! from India")
+        } else {
+            pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
+        }
+
+        commandDelegate.send(pluginResult, callbackId: command?.callbackId)
+    }
 }
